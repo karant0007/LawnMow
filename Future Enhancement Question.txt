@@ -1,0 +1,10 @@
+Future of lawn mowing endeavours Question:
+
+1) What other features would you like to add?
+-> We can add many things, just suppose user can find out near by top rated lawn movers, also we can include gardeners on this platforms to support more business in one platform, where user have more choice to find right person. We can also provide registration process for gardeners/movers where they can buy plan which helps them to get in reach of user search.
+
+2) How would you handle user authentication?
+-> if you're talking about frontend authentication then we can provide system login with JWT token service to authenticate and security, we can also create social media login too, to provide ease login/registration in our system.
+
+3) How would you deploy the solution in an enterprise environment?
+-> we can create a CI/CD to do this, azure provide currently best CI/CD platform where we can easily deploy our website and modification to server on a button click 
