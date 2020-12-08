@@ -1,0 +1,59 @@
+﻿@model Lawn_Mow_App.Models.InputModel
+@{
+    ViewBag.Title = "calculatePrice";
+}
+
+<div class="row">
+    <div class="col-md-8 col-lg-offset-2" style="margin-top:25px;">
+        <center>
+            <h3 style="font-weight:bold;">Calculate Price</h3>
+            @using (Html.BeginForm("calculatePrice", "home", FormMethod.Post, new { @class = "form-inline" }))
+            {
+                <label>Square Meter</label>
+                <div class="form-group">
+                    @Html.TextBoxFor(z => z.SqMeter, new { @class = "form-control", @placeholder = "Enter Square Meter" })
+                </div>
+                <button type="submit" class="btn btn-success">Calculate Price</button>
+                <a href="@Url.Action("calculatePrice","home")" class="btn btn-danger">Clear</a>
+            }
+            @if (Model != null && Model.TotalSquareMeter > 0 && Model.NetAmount > 0)
+            {
+                <h3 style="font-weight:bold;margin-top:25px;">Price Calculation Summary </h3>
+                <table class="table table-bordered table-responsive table-striped">
+                    <thead style="background: #b5b2de;">
+                        <tr>
+                            <th>DESCRIPTION</th>
+                            <th>AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Square Meters</td>
+                            <td>@Model.TotalSquareMeter</td>
+                        </tr>
+                        <tr>
+                            <td>Price Per Square Meter</td>
+                            <td>@Model.PricePerSqMeter</td>
+                        </tr>
+                        <tr>
+                            <td>Discount</td>
+                            <td>@Model.Discount</td>
+                        </tr>
+                        <tr>
+                            <td>Total Amount</td>
+                            <td>@Model.TotalAmount</td>
+                        </tr>
+                        <tr>
+                            <td>Discount Amount</td>
+                            <td>@Model.DiscountAmount</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:bold;">Gross Amount</td>
+                            <td style="font-weight:bold;">@Model.NetAmount</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </center>
+    </div>
+</div>
