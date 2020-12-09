@@ -1,0 +1,169 @@
+﻿@model Lawn_Mow_App.Models.WeatherForecast
+@{
+    ViewBag.Title = "WeatherForecast";
+}
+
+<div class="row">
+    <div class="col-md-8 col-lg-offset-2" style="margin-top:25px;">
+        <center>
+            <h3 style="font-weight:bold;">7 Days Weather Forecast</h3>
+            @if (Model != null && Model.daily.Count() > 0)
+            {
+                <table class="table table-bordered table-responsive table-striped" style="margin-top: 25px;">
+                    <thead style="background: #b5b2de;">
+                        <tr style="font-size: 20px;">
+                            <th></th>
+                            <th style="min-width:60px;text-align: center;">
+                                @{
+                                    var dateTime = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                                    var day1 = dateTime.AddSeconds(Model.daily[0].dt);
+                                }
+                                @day1.ToString("ddd") <br />
+                                @day1.ToString("MM/yy")
+                            </th>
+                            <th style="min-width:60px;text-align: center;">
+                                @{
+                                    var dateTime1 = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                                    var day2 = dateTime1.AddSeconds(Model.daily[1].dt);
+                                }
+                                @day2.ToString("ddd") <br />
+                                @day2.ToString("MM/yy")
+                            </th>
+                            <th style="min-width:60px;text-align: center;">
+                                @{
+                                    var dateTime2 = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                                    var day3 = dateTime2.AddSeconds(Model.daily[2].dt);
+                                }
+                                @day3.ToString("ddd") <br />
+                                @day3.ToString("MM/yy")
+                            </th>
+                            <th style="min-width:60px;text-align: center;">
+                                @{
+                                    var dateTime3 = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                                    var day4 = dateTime3.AddSeconds(Model.daily[3].dt);
+                                }
+                                @day4.ToString("ddd") <br />
+                                @day4.ToString("MM/yy")
+                            </th>
+                            <th style="min-width:60px;text-align: center;">
+                                @{
+                                    var dateTime4 = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                                    var day5 = dateTime4.AddSeconds(Model.daily[4].dt);
+                                }
+                                @day5.ToString("ddd") <br />
+                                @day5.ToString("MM/yy")
+                            </th>
+                            <th style="min-width:60px;text-align: center;">
+                                @{
+                                    var dateTime5 = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                                    var day6 = dateTime5.AddSeconds(Model.daily[5].dt);
+                                }
+                                @day6.ToString("ddd") <br />
+                                @day6.ToString("MM/yy")
+                            </th>
+                            <th style="min-width:60px;text-align: center;">
+                                @{
+                                    var dateTime6 = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                                    var day7 = dateTime6.AddSeconds(Model.daily[6].dt);
+                                }
+                                @day7.ToString("ddd") <br />
+                                @day7.ToString("MM/yy")
+                            </th>
+                            <th style="min-width:60px;text-align: center;">
+                                @{
+                                    var dateTime7 = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                                    var day8 = dateTime7.AddSeconds(Model.daily[7].dt);
+                                }
+                                @day8.ToString("ddd") <br />
+                                @day8.ToString("MM/yy")
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="font-size: 25px; font-weight:bold;text-align: center;">
+                            <td></td>
+                            <td><img src="http://openweathermap.org/img/w/@(Model.daily[0].weather[0].icon).png" /><br />@Model.daily[0].temp.day &#8451;</td>
+                            <td><img src="http://openweathermap.org/img/w/@(Model.daily[1].weather[0].icon).png" /><br />@Model.daily[1].temp.day &#8451;</td>
+                            <td><img src="http://openweathermap.org/img/w/@(Model.daily[2].weather[0].icon).png" /><br />@Model.daily[2].temp.day &#8451;</td>
+                            <td><img src="http://openweathermap.org/img/w/@(Model.daily[3].weather[0].icon).png" /><br />@Model.daily[3].temp.day &#8451;</td>
+                            <td><img src="http://openweathermap.org/img/w/@(Model.daily[4].weather[0].icon).png" /><br />@Model.daily[4].temp.day &#8451;</td>
+                            <td><img src="http://openweathermap.org/img/w/@(Model.daily[5].weather[0].icon).png" /><br />@Model.daily[5].temp.day &#8451;</td>
+                            <td><img src="http://openweathermap.org/img/w/@(Model.daily[6].weather[0].icon).png" /><br />@Model.daily[6].temp.day &#8451;</td>
+                            <td><img src="http://openweathermap.org/img/w/@(Model.daily[7].weather[0].icon).png" /><br />@Model.daily[7].temp.day &#8451;</td>
+                        </tr>
+                        <tr>
+                            <td style="background: #444448; color: white;">Feels Like</td>
+                            <td>@Model.daily[0].feels_like.day</td>
+                            <td>@Model.daily[1].feels_like.day</td>
+                            <td>@Model.daily[2].feels_like.day</td>
+                            <td>@Model.daily[3].feels_like.day</td>
+                            <td>@Model.daily[4].feels_like.day</td>
+                            <td>@Model.daily[5].feels_like.day</td>
+                            <td>@Model.daily[6].feels_like.day</td>
+                            <td>@Model.daily[7].feels_like.day</td>
+                        </tr>
+                        <tr>
+                            <td style="background: #444448; color: white;">Night</td>
+                            <td>@Model.daily[0].temp.night</td>
+                            <td>@Model.daily[1].temp.night</td>
+                            <td>@Model.daily[2].temp.night</td>
+                            <td>@Model.daily[3].temp.night</td>
+                            <td>@Model.daily[4].temp.night</td>
+                            <td>@Model.daily[5].temp.night</td>
+                            <td>@Model.daily[6].temp.night</td>
+                            <td>@Model.daily[7].temp.night</td>
+                        </tr>
+                        <tr>
+                            <td style="background: #444448; color: white;">Humidity</td>
+                            <td>@Model.daily[0].humidity &percnt;</td>
+                            <td>@Model.daily[1].humidity &percnt;</td>
+                            <td>@Model.daily[2].humidity &percnt;</td>
+                            <td>@Model.daily[3].humidity &percnt;</td>
+                            <td>@Model.daily[4].humidity &percnt;</td>
+                            <td>@Model.daily[5].humidity &percnt;</td>
+                            <td>@Model.daily[6].humidity &percnt;</td>
+                            <td>@Model.daily[7].humidity &percnt;</td>
+                        </tr>
+                        <tr>
+                            <td style="background: #444448; color: white;">Pressure</td>
+                            <td>@Model.daily[0].pressure</td>
+                            <td>@Model.daily[1].pressure</td>
+                            <td>@Model.daily[2].pressure</td>
+                            <td>@Model.daily[3].pressure</td>
+                            <td>@Model.daily[4].pressure</td>
+                            <td>@Model.daily[5].pressure</td>
+                            <td>@Model.daily[6].pressure</td>
+                            <td>@Model.daily[7].pressure</td>
+                        </tr>
+                        <tr>
+                            <td style="background: #444448; color: white;">Wind Speed</td>
+                            <td>@Model.daily[0].wind_speed</td>
+                            <td>@Model.daily[1].wind_speed</td>
+                            <td>@Model.daily[2].wind_speed</td>
+                            <td>@Model.daily[3].wind_speed</td>
+                            <td>@Model.daily[4].wind_speed</td>
+                            <td>@Model.daily[5].wind_speed</td>
+                            <td>@Model.daily[6].wind_speed</td>
+                            <td>@Model.daily[7].wind_speed</td>
+                        </tr>
+                        <tr>
+                            <td style="background: #444448; color: white;">Wind Degree</td>
+                            <td>@Model.daily[0].wind_deg</td>
+                            <td>@Model.daily[1].wind_deg</td>
+                            <td>@Model.daily[2].wind_deg</td>
+                            <td>@Model.daily[3].wind_deg</td>
+                            <td>@Model.daily[4].wind_deg</td>
+                            <td>@Model.daily[5].wind_deg</td>
+                            <td>@Model.daily[6].wind_deg</td>
+                            <td>@Model.daily[7].wind_deg</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h4 style="font-weight:bold;margin-top:25px; color:red;">Something Went Wrong While Getting Weather Data</h4>
+            }
+        </center>
+    </div>
+</div>
