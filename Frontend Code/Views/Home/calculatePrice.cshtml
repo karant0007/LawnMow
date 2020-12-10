@@ -16,7 +16,7 @@
                 <button type="submit" class="btn btn-success">Calculate Price</button>
                 <a href="@Url.Action("calculatePrice","home")" class="btn btn-danger">Clear</a>
             }
-            @if (Model != null && Model.TotalSquareMeter > 0 && Model.NetAmount > 0)
+            @if (Model != null)
             {
                 <h3 style="font-weight:bold;margin-top:25px;">Price Calculation Summary </h3>
                 <table class="table table-bordered table-responsive table-striped">

@@ -38,45 +38,42 @@ namespace Lawn_Mow_App.Controllers
         }
 
         [HttpPost]
-        public ActionResult calculatePrice(InputModel input)
+        public async Task<ActionResult> calculatePrice(InputModel input)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var model = new InputModel();
-                    if (input.SqMeter <= 15)
+                    
+                    using (var client = new HttpClient())
                     {
-                        model.TotalSquareMeter = input.SqMeter;
-                        model.PricePerSqMeter = 1;
-                        model.Discount = "0%";
-                        model.TotalAmount = input.SqMeter;
-                        model.DiscountAmount = 0;
-                        model.NetAmount = input.SqMeter;
+                        var APIurl = System.Configuration.ConfigurationManager.AppSettings["lawMowAPIUrl"];
+                        client.BaseAddress = new Uri(APIurl);
+                        //HTTP GET
+                        var responseTask = client.GetAsync("calculatePrice/" + input.SqMeter);
+                        responseTask.Wait();
+
+                        var result = responseTask.Result;
+                        if (result.StatusCode == HttpStatusCode.OK)
+                        {
+                            var responseString = await result.Content.ReadAsStringAsync();
+                            var response = JsonConvert.DeserializeObject<ResponseModel>(responseString);
+                            if (response.Success)
+                            {
+                                model = response.Data;
+                                TempData["Success"] = "Get Weather Data Successfully";
+                            }
+                            else
+                            {
+                                TempData["Error"] = "Failed To Getting Weather Data";
+                            }
+                        }
+                        else
+                        {
+                            TempData["Error"] = "Failed To Getting Weather Data";
+                        }
                     }
-                    else if (input.SqMeter > 15 && input.SqMeter <= 25)
-                    {
-                        var disAmnt = (input.SqMeter * 10) / 100;
-                        var netAmnt = input.SqMeter - disAmnt;
-                        model.TotalSquareMeter = input.SqMeter;
-                        model.PricePerSqMeter = 1;
-                        model.Discount = "10%";
-                        model.TotalAmount = input.SqMeter;
-                        model.DiscountAmount = disAmnt;
-                        model.NetAmount = netAmnt;
-                    }
-                    else
-                    {
-                        var disAmnt = (input.SqMeter * 15) / 100;
-                        var netAmnt = input.SqMeter - disAmnt;
-                        model.TotalSquareMeter = input.SqMeter;
-                        model.PricePerSqMeter = 1;
-                        model.Discount = "15%";
-                        model.TotalAmount = input.SqMeter;
-                        model.DiscountAmount = disAmnt;
-                        model.NetAmount = netAmnt;
-                    }
-                    TempData["Success"] = "Square Meter Calculation Done";
                     return View(model);
                 }
                 else

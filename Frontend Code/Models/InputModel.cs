@@ -18,4 +18,11 @@ namespace Lawn_Mow_App.Models
         public float DiscountAmount { get; set; }
         public float NetAmount { get; set; }
     }
+
+    public class ResponseModel
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public InputModel Data { get; set; }
+    }
 }
