@@ -9,6 +9,22 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    <!-- Toaster-->
+    <link rel="stylesheet" type="text/css" href="~/Content/toastr.css">
+    <script src="~/Scripts/toastr.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var success = '@TempData["Success"]';
+            var error = '@TempData["Error"]';
+            if (success != "") {
+                toastr.success(success);
+            }
+            if (error != "") {
+                toastr.error(error);
+            }
+    });
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" style=" background-color: #09063a; border-color: #09063a;">
@@ -37,21 +53,6 @@
             </footer>*@
     </div>
 
-    <!-- Toaster-->
-    @*<link rel="stylesheet" type="text/css" href="~/Content/toastr.css">
-    <script src="~/Scripts/toastr.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var success = '@TempData["Success"]';
-            var error = '@TempData["Error"]';
-            if (success != "") {
-                toastr.success(success);
-            }
-            if (error != "") {
-                toastr.error(error);
-            }
-    });
-    </script>*@
     @RenderSection("scripts", required: false)
 </body>
 </html>
